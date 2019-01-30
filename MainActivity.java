@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements
         SensorRequest request = new SensorRequest.Builder()
                 .setDataSource( dataSource )
                 .setDataType( dataType )
-                .setSamplingRate( 1, TimeUnit.SECONDS )
+                .setSamplingRate( 2, TimeUnit.SECONDS )
                 .build();
 
         Fitness.SensorsApi.add(mApiClient, request, this)
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements
 
         //Sensor Api Part
         DataSourcesRequest dataSourceRequest = new DataSourcesRequest.Builder()
-                .setDataTypes( DataType.TYPE_STEP_COUNT_CUMULATIVE )
+                .setDataTypes( DataType.TYPE_STEP_COUNT_DELTA )
                 .setDataSourceTypes( DataSource.TYPE_RAW )
                 .build();
 
@@ -192,8 +192,8 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onResult(DataSourcesResult dataSourcesResult) {
                 for( DataSource dataSource : dataSourcesResult.getDataSources() ) {
-                    if( DataType.TYPE_STEP_COUNT_CUMULATIVE.equals( dataSource.getDataType() ) ) {
-                        registerFitnessDataListener(dataSource, DataType.TYPE_STEP_COUNT_CUMULATIVE);
+                    if( DataType.TYPE_STEP_COUNT_DELTA.equals( dataSource.getDataType() ) ) {
+                        registerFitnessDataListener(dataSource, DataType.TYPE_STEP_COUNT_DELTA);
                     }
                 }
             }
@@ -225,6 +225,7 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    //Ble Api Part
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -261,6 +262,8 @@ public class MainActivity extends AppCompatActivity implements
                 @Override
                 public void run() {
                     Toast.makeText(getApplicationContext(), "Field: " + field.getName() + " Value: " + value, Toast.LENGTH_SHORT).show();
+                    Log.e("Sensor", "\tField: " + field.getName() +
+                            " Value: " + value);
                     ((TextView)findViewById(R.id.textView)).setText(value.asString());
                 }
             });
