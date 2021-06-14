@@ -1,5 +1,7 @@
 # Sony-Smartband-2
 
-MainActivity.java是主程式，目前有Sensor, Recording, Ble API，尚未成功連接到Sony手環，所以不確定正不正確。
+It was the team project I did when I was junior. 
 
-activity_main.xml是APP介面。
+The main function is to use SONY SmartBand to monitor user's exercising position and freqency. With machine learning, it can also recognize the type of exercise the user did. Then we can give them some diet and exercising suggestion according to the statistic.
+
+I was responsible for software engineering and my teammate was responsible for machine learning part(not include in this github).
