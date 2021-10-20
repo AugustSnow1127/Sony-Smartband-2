@@ -1,4 +1,5 @@
 # Sony-Smartband-2
+專題程式。主要串接Google fitness API以從智慧手環取得數據，並使用watch_predict-1.0專案的sklearning隨機森林分析，以判斷使用者當前的運動形式。
 
 It was the team project I did when I was junior. 
 
